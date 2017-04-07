@@ -10,14 +10,16 @@ class Client(object):
         self.ip = ip
         self.apiAddress = "http://" + ip + "/api/" + self.apiVersion
     
+    
     def getDeviceIds(self):
         req = requests.get(self.apiAddress + "/device")
         return (req.json())["deviceIds"]
-    
+
 
     def getDevice(self, id):
         req = requests.get(self.apiAddress + "/device/" + str(id))
         return req.json()
+
 
     def getDevices(self):
         deviceIds = self.getDeviceIds()
@@ -25,5 +27,5 @@ class Client(object):
         for id in deviceIds:
             device = self.getDevice(id)
             devices[id] = device
-        
+            
         return devices
