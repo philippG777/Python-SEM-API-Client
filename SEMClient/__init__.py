@@ -10,12 +10,13 @@ class Device(object):
         self.raw = raw
 
 
+    def __repr__(self):
+        return "ID: %d | Name: %s | Location: %s" % (self.get("deviceId"), self.get("name"), self.get("room"))
+
+
     def get(self, field):
         return self.raw[field]
 
-
-    def __repr__(self):
-        return "ID: %d | Name: %s | Location: %s" % (self.get("deviceId"), self.get("name"), self.get("room"))
 
 
 class Client(object):
@@ -24,6 +25,11 @@ class Client(object):
         self.ip = ip
         self.apiAddress = "http://" + ip + "/api/" + self.apiVersion
     
+
+    def __repr__(self):
+        system = self.getSystem()
+        return "%s @ Version %s | serial-number: %s" % (system["system"], system["version"], system["serialNumber"])
+
 
     def getDeviceIds(self):
         req = requests.get(self.apiAddress + "/device")
@@ -60,3 +66,20 @@ class Client(object):
 
     def getConsumption(self):
         return float((self.getStatus("consumption"))["valueNumeric"])
+
+    
+    def getProduction(self):
+        return int((self.getStatus("production"))["valueNumeric"])
+    
+
+    def getMeter(self):
+        return float((self.getStatus("meter"))["valueNumeric"]) * -1    # if value positive -> more production than consumption
+
+    
+    def getSystem(self):
+        req = requests.get(self.apiAddress + "/system/")
+        return req.json()
+
+    def getBuild(self):
+        req = requests.get(self.apiAddress + "/system/build")
+        return req.json()
