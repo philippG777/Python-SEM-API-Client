@@ -72,7 +72,7 @@ class Client(object):
     
 
     def getMeter(self):
-        return float((self.getStatus("meter"))["valueNumeric"]) * -1    # if value positive -> more production than consumption
+        return float((self.getStatus("meter"))["valueNumeric"])
 
     
     def getSystem(self):
