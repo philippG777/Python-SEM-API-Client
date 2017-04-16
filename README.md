@@ -10,18 +10,21 @@ This library makes it easy to interface with the [Smart Energy Manager](https://
 
 ## Documentation
 
-### Importing the module
+### Client-class
+#### Importing the module
 ```python
 import SEMClient
 
 sem = SEMClient.Client("<IP-address of your sem>")  # new SEM-object
 ```
+This makes a new Client-object.
 
-### Get all Device-IDs
+#### Get all Device-IDs
 ```python
 ids = sem.getDeviceIds()
 ```
-#### Example
+This function returns the IDs of all Devices in the SEMS-network as an array.
+##### Example
 ```python
 ids = sem.getDeviceIds()
 print ids
@@ -31,38 +34,42 @@ Output:
 [1, 2, 3, 4, 5, 6]
 ```
 
-### Get Device by ID
+#### Get Device by ID
 ```python
 device = sem.getDevice(1)
 ```
+obj.getDevice(id) is a function that returns you the device with the ID given to it.
+It returns a ```Device```-object.
 
-### Get Device by name
+#### Get Device by name
 ```python
 device = sem.getDeviceByName("Smart Plug")
 ```
 
-### Get all Devices
+#### Get all Devices
 ```python
 devices = sem.getDevices()
 ```
 
-### Get a Value from a specific Device
+#### Get a Value from a specific Device
 ```python
 device = sem.getDevice(1)
 deviceName = device.get("name")       # this prints the name of the Device with ID = 1
 ```
 
-### Get the Consumption
+#### Get the Consumption
 ```python
 cons = sem.getConumption()
 ```
 
-### Get the Production
+#### Get the Production
 ```python
 prod = sem.getProduction()
 ```
 
-### Get Meter-data
+#### Get Meter-data
 ```python
 meterData = sem.getMeter()
 ```
+
+### Device-class
