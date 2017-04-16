@@ -12,12 +12,12 @@ This library makes it easy to interface with the [Smart Energy Manager](https://
 
 ### Client-class
 #### Importing the module
-```python
-import SEMClient
-
-sem = SEMClient.Client("<IP-address of your sem>")  # new SEM-object
-```
-This makes a new Client-object.
+> ```python
+> import SEMClient
+>
+> sem = SEMClient.Client("<IP-address of your sem>")  # new SEM-object
+> ```
+> This makes a new Client-object.
 
 #### Get all Device-IDs
 ```python
