@@ -78,5 +78,4 @@ This library makes it easy to interface with the [Smart Energy Manager](https://
 > ```python
 > deviceName = device.get("name")
 > ```
-
 > This function returns the value of the given Field
